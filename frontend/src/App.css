@@ -1,34 +1,338 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Core color system following bigfish guidelines */
+:root {
+  /* Foundation Colors */
+  --color-black: #151515;
+  --color-white: #fff;
+  --color-dark-grey: #717171;
+  --color-mid-grey: #aaa;
+  --color-grey: #b6cbcb;
+  
+  /* Vibrant Brand Colors */
+  --color-dark-blue: #1f47e6;
+  --color-mid-blue: #88a2ff;
+  --color-light-blue: #b7fbff;
+  --color-mid-pink: #ff84e4;
+  --color-light-pink: #ffd1e7;
+  --color-mid-purple: #d987ff;
+  --color-mid-yellow: #ffe03d;
+  --color-light-yellow: #f6fd87;
+  --color-dark-orange: #d1903a;
+  --color-mid-orange: #ff965a;
+  --color-dark-green: #a1a500;
+  --color-mid-green: #78d692;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Typography system */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: var(--color-black);
+  background-color: var(--color-black);
+  overflow-x: hidden;
 }
 
-.App-link {
-    color: #61dafb;
+/* Font families */
+.font-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 0.0875em;
+}
+
+/* Portfolio container */
+.portfolio-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Hero section styling */
+.hero-section {
+  height: 100vh;
+  height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Navigation styling following bigfish guidelines */
+.nav-link {
+  color: var(--color-light-pink);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-decoration: none;
+  padding: 0;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: var(--color-white);
+}
+
+.nav-link:focus {
+  outline: 2px solid var(--color-light-pink);
+  outline-offset: 2px;
+}
+
+/* Service buttons - rounded tags */
+.service-button {
+  background: var(--color-mid-purple);
+  color: var(--color-black);
+  border: 1px solid var(--color-mid-purple);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.0875em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.service-button:hover {
+  background: var(--color-white);
+  border-color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+/* CTA buttons - premium black style */
+.cta-button {
+  background: var(--color-black);
+  color: var(--color-white);
+  border: 1px solid var(--color-black);
+  border-radius: 9999px;
+  padding: 0.875rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.0875em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: none;
+}
+
+.cta-button:hover {
+  background: var(--color-dark-grey);
+  border-color: var(--color-dark-grey);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:active {
+  transform: scale(0.98);
+}
+
+/* Experience cards */
+.experience-card {
+  transition: all 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.experience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Skill cards */
+.skill-card {
+  transition: all 0.3s ease;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Certification cards */
+.cert-card {
+  transition: all 0.3s ease;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.cert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact form styling */
+.contact-form {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 1rem;
+    min-height: 80vh;
+  }
+  
+  .hero-content {
+    padding: 1rem;
+  }
+  
+  .font-display {
+    font-size: 2rem;
+  }
+  
+  .portfolio-container section {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    padding: 3rem;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-mid-grey);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-light-pink);
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-light-pink);
+  outline-offset: 2px;
+}
+
+/* Color utility classes */
+.text-light-pink { color: var(--color-light-pink); }
+.text-light-blue { color: var(--color-light-blue); }
+.text-light-yellow { color: var(--color-light-yellow); }
+.text-mid-purple { color: var(--color-mid-purple); }
+.text-dark-green { color: var(--color-dark-green); }
+
+.bg-light-pink { background-color: var(--color-light-pink); }
+.bg-mid-purple { background-color: var(--color-mid-purple); }
+.bg-light-yellow { background-color: var(--color-light-yellow); }
+.bg-dark-green { background-color: var(--color-dark-green); }
+
+/* Container system */
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Gradient backgrounds for sections - limited to 20% rule */
+.gradient-hero {
+  background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-mid-blue) 100%);
+}
+
+.gradient-about {
+  background: linear-gradient(135deg, var(--color-dark-blue) 0%, var(--color-mid-blue) 100%);
+}
+
+.gradient-experience {
+  background: linear-gradient(135deg, var(--color-mid-purple) 0%, var(--color-dark-green) 100%);
+}
+
+.gradient-skills {
+  background: linear-gradient(135deg, var(--color-light-yellow) 0%, var(--color-mid-orange) 100%);
+}
+
+.gradient-contact {
+  background: linear-gradient(135deg, var(--color-black) 0%, var(--color-dark-grey) 100%);
 }
